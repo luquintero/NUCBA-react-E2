@@ -1,0 +1,25 @@
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .hero h1 {
+    font-size: 2em;
+  }
+
+  .hero p {
+    font-size: 1.2em;
+  }
+
+  .product-list {
+    flex-direction: column;
+  }
+
+  .product-item {
+    max-width: none;
+  }
+}
