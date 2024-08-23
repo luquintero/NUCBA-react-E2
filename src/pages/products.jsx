@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react'; 
+import { useContext } from 'react';  
 import styled from 'styled-components';
+import products from '../datos/productos';
+import { CartContext } from '../context/carrito';
 
 const ProductsContainer = styled.div`
   padding: 2rem;
@@ -14,15 +17,28 @@ const ProductsContainer = styled.div`
 
   div {
     padding: 2rem 1rem;
-  background: #fff;
+    background: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+`;
+
+const FilterContainer = styled.div`
+  margin-bottom: 1.5rem;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
+
+  select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #9F7DB7;
+    border-radius: 10px;
   }
 `;
 
 const Product = styled.div`
-color: #9F7DB7;
+  color: #9F7DB7;
   border: 1px solid #9F7DB7;
   margin: 1rem;
   padding: 1rem;
@@ -40,57 +56,46 @@ color: #9F7DB7;
   }
 `;
 
+
+
 const Products = () => {
+  const { addToCart } = useContext(CartContext);
+  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [filter, setFilter] = useState('Todos');
+
+  const handleFilterChange = (e) => {
+    const selectedCategory = e.target.value;
+    setFilter(selectedCategory);
+
+    if (selectedCategory === 'Todos') {
+      setFilteredProducts(products);
+    } else {
+      setFilteredProducts(products.filter(product => product.category === selectedCategory));
+    }
+  };
+
   return (
     <ProductsContainer>
       <h1>Productos</h1>
+      <FilterContainer>
+        <select value={filter} onChange={handleFilterChange}>
+          <option value="Todos">Todos</option>
+          <option value="Akashicos">Registros Akashicos</option>
+          <option value="Reiki">Reiki</option>
+          <option value="FengShui">Feng Shui</option>
+        </select>
+      </FilterContainer>
       <div>
-          <Product>
-            <h3>Registros Akashicos - Presencial</h3>
-            <p>Lectura individual y presencial. </p>
-            <p>Duracion: 1 hora. </p>
+        {filteredProducts.map(product => (
+          <Product key={product.id}>
+            <h3>{product.name}</h3>
+            <p>{product.description}</p>
+            <p>Duración: {product.duration}</p>
+            <p>Precio en USD: ${product.price}</p>
+            <button onClick={() => addToCart(product)}>Añadir al carrito</button>
           </Product>
-          <Product>
-            <h3>Registros Akashicos - Virtual</h3>
-            <p>Lectura individual y virtual. </p>
-            <p>Duracion: 1 hora. </p>
-          </Product>
-          <Product>
-            <h3>Registros Akashicos - Curso</h3>
-            <p>Curso de iniciación a la lectura de Registros Akashicos. </p>
-            <p>Duracion: 3 horas. </p>
-          </Product>
-          <Product>
-            <h3>Sesion de Reiki</h3>
-            <p>Sesion individual y presencial. </p>
-            <p>Duracion: 1 hora. </p>
-          </Product>
-          <Product>
-            <h3>Iniciación al Reiki</h3>
-            <p>Iniciación al nivel 1 de Reiki. </p>
-            <p>Duracion: 1 hora. </p>
-          </Product>
-          <Product>
-            <h3>Master Reiki</h3>
-            <p>Intensivo 3 niveles de Reiki. </p>
-            <p>Duracion: 3 horas. </p>
-          </Product>
-          <Product>
-            <h3>Analisis de Feng Shui Completo</h3>
-            <p>Sesion presencial. </p>
-            <p>Duracion: 2 horas. </p>
-          </Product>
-          <Product>
-            <h3>Analisis de Feng Shui Parcial</h3>
-            <p>Sesion virtual. </p>
-            <p>Duracion: 1 horas. </p>
-          </Product>
-          <Product>
-            <h3>Curso de Feng Shui</h3>
-            <p>Iniciación al Feng Shui. Modalidad virtual y presencial. </p>
-            <p>Duracion: 3 horas. </p>
-          </Product>
-    </div>
+        ))}
+      </div>
     </ProductsContainer>
   );
 };

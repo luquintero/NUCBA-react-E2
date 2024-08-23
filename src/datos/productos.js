@@ -1,0 +1,77 @@
+const products = [
+    {
+      id: 1,
+      name: 'Registros Akashicos - Presencial',
+      description: 'Lectura individual y presencial',
+      duration: '1 hora',
+      price: 50,
+      category: 'Akashicos',
+    },
+    {
+      id: 2,
+      name: 'Registros Akashicos - Virtual',
+      description: 'Lectura individual y virtual',
+      duration: '1 hora',
+      price: 40,
+      category: 'Akashicos',
+    },
+    {
+      id: 3,
+      name: 'Registros Akashicos - Curso',
+      description: 'Curso de iniciación a la lectura de Registros Akashicos.',
+      duration: '3 horas',
+      price: 70,
+      category: 'Akashicos',
+    },
+    {
+        id: 4,
+        name: 'Sesion de Reiki',
+        description: 'Sesion individual y presencial',
+        duration: '1 hora',
+        price: 50,
+        category: 'Reiki',
+      },
+      {
+        id: 5,
+        name: 'Iniciación al Reiki',
+        description: 'Iniciación al nivel 1 de Reiki.',
+        duration: '1 hora',
+        price: 60,
+        category: 'Reiki',
+      },
+      {
+        id: 6,
+        name: 'Master Reiki',
+        description: 'Intensivo 3 niveles de Reiki.',
+        duration: '3 horas',
+        price: 120,
+        category: 'Reiki',
+      },
+      {
+        id: 7,
+        name: 'Analisis de Feng Shui Completo',
+        description: 'Sesion presencial',
+        duration: '2 horas',
+        price: 70,
+        category: 'FengShui',
+      },
+      {
+        id: 8,
+        name: 'Analisis de Feng Shui Parcial',
+        description: 'Sesion virtual por zoom',
+        duration: '1 hora',
+        price: 40,
+        category: 'FengShui',
+      },
+      {
+        id: 9,
+        name: 'Curso de Feng Shui',
+        description: 'Iniciación al Feng Shui. Modalidad virtual y presencial.',
+        duration: '3 horas',
+        price: 120,
+        category: 'FengShui',
+      },
+  ];
+  
+  export default products;
+  

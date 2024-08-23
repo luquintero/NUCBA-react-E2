@@ -1,7 +1,8 @@
-
 import React, { createContext, useState, useContext } from 'react';
 import styled from 'styled-components';
 import logo from './images/logo.png';
+import iconocarrito from './images/icono-carrito.png'; 
+import { CartContext } from '../context/carrito'; 
 
 const MenuContext = createContext();
 
@@ -68,8 +69,19 @@ const Styledlogo = styled.img`
   cursor: pointer;
 `;
 
+const CartButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  img {
+    width: 20px; 
+    height: auto;
+  }
+`;
+
 const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const { toggleCart } = useContext(CartContext); 
 
   const toggleMenu = () => {
     setMenuOpen(prev => !prev);
@@ -88,6 +100,11 @@ const Header = () => {
             <li><a href="/about">Sobre Mi</a></li>
             <li><a href="/products">Productos</a></li>
             <li><a href="/contact">Contacto</a></li>
+            <li>
+              <CartButton onClick={toggleCart}>
+                
+              </CartButton>
+            </li>
           </ul>
         </Navbar>
       </HeaderContainer>
